@@ -10,7 +10,7 @@ const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setE
       const currentMonth = (new Date()).toLocaleDateString('en', { month: '2-digit' });
       const currentDate = [currentYear, currentMonth].join(separator);
       const date = [y, m].join(separator);
-      if (date <= currentDate) {
+      if (date < currentDate) {
         setError('Card Expired');
       } else {
         setError(null);

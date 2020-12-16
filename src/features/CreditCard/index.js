@@ -25,7 +25,7 @@ const CreditCard = (props) => {
   const dispatch = useDispatch();
 
   const onSaveCardClicked = () => {
-    if (number && expireDate && cvc) {
+    if (number.length === 16 && expireDate && cvc) {
       dispatch(
         cardAdded({
           id: nanoid(),
@@ -33,12 +33,16 @@ const CreditCard = (props) => {
           expireDate,
           cvc
         })
-        );
+      );
+      setErrors({ ...errors, save: null });
       setNumber('');
       setExpireDate('-');
       setCVC('');
       
+    } else {
+      setErrors({ ...errors, save: 'Please enter valid card details' });
     }
+
   }
 
   return (
@@ -67,7 +71,10 @@ const CreditCard = (props) => {
           />
         </Row>
       </Border>
-      <button type="button" onClick={ onSaveCardClicked }>
+      <button
+        type="button"
+        onClick={ onSaveCardClicked }
+      >
           Add Card
         </button>
       <ErrorMessage errors={ errors } />

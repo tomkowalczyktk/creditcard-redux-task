@@ -10,6 +10,7 @@ import { CardsList } from './CardsList';
 import { useDispatch } from "react-redux";
 import { nanoid } from '@reduxjs/toolkit';
 import { cardAdded } from './cardsSlice';
+import CardSaveButton from './CardSaveButton';
 
 const CreditCard = (props) => {
   const [number, setNumber] = useState('');
@@ -18,9 +19,11 @@ const CreditCard = (props) => {
   const [errors, setErrors] = useState({});
   const expireDateRef = useRef();
   const cvcRef = useRef();
+  const saveRef = useRef();
 
   const focusDateField = createFocusCallback(expireDateRef);
   const focusCVCField = createFocusCallback(cvcRef);
+  const focusSaveButton = createFocusCallback(saveRef);
   
   const dispatch = useDispatch();
 
@@ -67,16 +70,16 @@ const CreditCard = (props) => {
             value={cvc}
             setValue={setCVC}
             setError={error => setErrors({...errors, cvc : error})}
-            ref={cvcRef}
+            ref={ cvcRef }
+            focusNextField={focusSaveButton}
           />
         </Row>
       </Border>
-      <button
-        type="button"
-        onClick={ onSaveCardClicked }
-      >
-          Add Card
-        </button>
+      <CardSaveButton
+        text="Save Card"
+        ref={saveRef}
+        saveCard={ onSaveCardClicked }
+      />
       <ErrorMessage errors={ errors } />
       <CardsList/>
     </Wrapper>

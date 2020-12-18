@@ -10,9 +10,7 @@ import CreditCard from './features/CreditCard'
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ store }>
-      <App >
-        <CreditCard />
-      </App>
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

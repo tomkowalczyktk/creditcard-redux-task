@@ -1,14 +1,18 @@
 import React from 'react';
 import { Wrapper, Inner } from './App.styles';
 
+import CreditCard from './features/CreditCard';
 
 
-function App({children}) {
+
+function App() {
   return (
     <Wrapper>
-    <Inner>
-      {children}
-    </Inner>
+      <Inner>
+
+        <CreditCard/>
+      
+      </Inner>
   </Wrapper>
   )
 }

@@ -1,18 +1,20 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { nanoid } from '@reduxjs/toolkit';
+
+import { createFocusCallback } from './tools';
+
 import CardType from './CardType';
 import CardNumber from './CardNumber';
 import CardExpireDate from './CardExpireDate';
 import CardCVC from './CardCVC';
 import ErrorMessage from './ErrorMessage';
 import { Wrapper, Border, Row } from './CreditCard.styles';
-import { createFocusCallback } from './tools';
 import { CardsList } from './CardsList';
-import { useDispatch } from "react-redux";
-import { nanoid } from '@reduxjs/toolkit';
 import { cardAdded } from './cardsSlice';
 import CardSaveButton from './CardSaveButton';
 
-const CreditCard = (props) => {
+const CreditCard = () => {
   const [number, setNumber] = useState('');
   const [expireDate, setExpireDate] = useState('');
   const [cvc, setCVC] = useState('');
@@ -85,11 +87,5 @@ const CreditCard = (props) => {
     </Wrapper>
   );
 };
-
-// Specifies types for props:
-CreditCard.propTypes = {
-
-};
-
 
 export default CreditCard;

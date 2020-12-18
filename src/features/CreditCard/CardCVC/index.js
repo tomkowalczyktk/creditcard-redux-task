@@ -17,7 +17,14 @@ const CreditCVC = React.forwardRef(({ value, setValue, setError }, ref) => {
   };
 
   return (
-    <Input value={value} onChange={onChange}  onBlur={e => validate(e.target.value)} placeholder="CVC" maxLength="3" ref={ref}/>
-  )
+    <Input
+      value={ value }
+      onChange={ onChange }
+      onBlur={ e => validate(e.target.value) }
+      placeholder="CVC"
+      maxLength="3"
+      ref={ ref }
+    />
+  );
 });
 export default CreditCVC;

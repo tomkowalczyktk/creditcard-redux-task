@@ -1,15 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, {  useRef } from 'react';
+
 import { Input, Separator, Wrapper } from './CardExpireDate.styles';
+
 const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setError }, ref) => {
   const separator = '-';
+
   const validate = (m, y) => {
     if (m === '' || y === '') {
       setError('Expire date is required');
     } else {
       const currentYear = (new Date()).toLocaleDateString('en', { year: '2-digit' });
       const currentMonth = (new Date()).toLocaleDateString('en', { month: '2-digit' });
+
       const currentDate = [currentYear, currentMonth].join(separator);
-      const date = [y, m].join(separator);
+      const date = [ y, m ].join(separator);
+      
       if (date < currentDate) {
         setError('Card Expired');
       } else {
@@ -24,6 +29,7 @@ const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setE
     const val = [mValue, year].join(separator);
     setValue(val);
   }
+
   const setYear = (yValue) => {
     const val = [month, yValue].join(separator);
     setValue(val);
@@ -53,6 +59,13 @@ const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setE
 
     }
   };
+  
+  const onBackspaceKeyDown = (e) => {
+    console.log(e.keyCode, ref);
+    if (e.which === 8) {
+      ref.current.focus();
+    }
+  }
 
   return (
     <Wrapper>
@@ -70,7 +83,8 @@ const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setE
         placeholder="YY"
         maxLength="2"
         onBlur={e => validate(month, e.target.value)}
-        ref={yearRef} 
+        ref={ yearRef } 
+        onKeyUp={onBackspaceKeyDown}
       />
     </Wrapper>
   )

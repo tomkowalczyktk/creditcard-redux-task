@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Input } from './CreditCVC.styles';
+
 const CreditCVC = React.forwardRef(({ value, setValue, setError }, ref) => {
   const validate = val => {
     if ((val || '').length !== 3) {
@@ -8,6 +10,7 @@ const CreditCVC = React.forwardRef(({ value, setValue, setError }, ref) => {
       setError(null);
     }
   };
+
   const onChange = e => {
     const re = /^[0-9\b]+$/;
     const val = e.target.value;

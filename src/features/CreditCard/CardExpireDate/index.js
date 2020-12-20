@@ -60,13 +60,6 @@ const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setE
     }
   };
   
-  const onBackspaceKeyDown = (e) => {
-    console.log(e.keyCode, ref);
-    if (e.which === 8) {
-      ref.current.focus();
-    }
-  }
-
   return (
     <Wrapper>
       <Input
@@ -84,7 +77,6 @@ const CardExpireDate = React.forwardRef(({ value, setValue, focusNextField, setE
         maxLength="2"
         onBlur={e => validate(month, e.target.value)}
         ref={ yearRef } 
-        onKeyUp={onBackspaceKeyDown}
       />
     </Wrapper>
   )
